@@ -38,10 +38,10 @@ variable "mp_listing_resource_version" {
 }
 
 ############################
-#  Custom Image           #
+#  Custom Image - Amar to add the link to the custom golden image for validation          #
 ############################
 variable "custom_image_id" {
-  default     = "ocid1.image.oc1...."
+  default     = "ocid1.image.oc1.phx.aaaaaaaaovzrz2osljjrg3fbmss7az2wpexjkw6jfsgu5oz6urq4kzgacgsa"
   description = "Custom Image OCID"
 }
 
@@ -51,19 +51,14 @@ variable "custom_image_id" {
 
 variable "vm_display_name" {
   description = "Instance Name"
-  default     = "simple-vm"
+  default     = "baremetal-gpu-instance"
 }
 
 variable "vm_compute_shape" {
   description = "Compute Shape"
-  default     = "VM.Standard2.2" //2 cores
+  default     = "BM.GPU.A10.4" //Bare Metal GPU A10 Size. Fixed
 }
 
-# only used for E3 Flex shape
-variable "vm_flex_shape_ocpus" {
-  description = "Flex Shape OCPUs"
-  default = 1
-}
 
 variable "availability_domain_name" {
   default     = ""
@@ -99,7 +94,7 @@ variable "vcn_id" {
 
 variable "vcn_display_name" {
   description = "VCN Name"
-  default     = "simple-vcn"
+  default     = "self-hosted-llm-vcn"
 }
 
 variable "vcn_cidr_block" {
@@ -109,7 +104,7 @@ variable "vcn_cidr_block" {
 
 variable "vcn_dns_label" {
   description = "VCN DNS Label"
-  default     = "simplevcn"
+  default     = "self-hosted-llm-simplevcn"
 }
 
 variable "subnet_type" {
@@ -143,7 +138,7 @@ variable "subnet_dns_label" {
 ############################
 variable "nsg_display_name" {
   description = "Network Security Group Name"
-  default     = "simple-network-security-group"
+  default     = "self-hosted-llm-network-security-group"
 }
 
 variable "nsg_source_cidr" {
@@ -160,11 +155,12 @@ variable "nsg_https_port" {
   description = "HTTPS Port"
   default     = 443
 }
-
+//port 80 will be used to render the public API
 variable "nsg_http_port" {
   description = "HTTP Port"
   default     = 80
 }
+
 
 ############################
 # Additional Configuration #

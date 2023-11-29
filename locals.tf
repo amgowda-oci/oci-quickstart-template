@@ -13,8 +13,9 @@ locals {
   platform_image_id = data.oci_core_images.autonomous_ol7.images[0].id
 
   # Logic to choose a custom image or a marketplace image.
-  compute_image_id = var.mp_subscription_enabled ? var.mp_listing_resource_id : var.custom_image_id
-
+  #compute_image_id = var.mp_subscription_enabled ? var.mp_listing_resource_id : var.custom_image_id
+  
+  compute_image_id = var.custom_image_id
   # Local to control subscription to Marketplace image.
   mp_subscription_enabled = var.mp_subscription_enabled ? 1 : 0
 
@@ -23,7 +24,5 @@ locals {
   listing_resource_id      = var.mp_listing_resource_id
   listing_resource_version = var.mp_listing_resource_version
 
-  
-  is_flex_shape = var.vm_compute_shape == "VM.Standard.E3.Flex" ? [var.vm_flex_shape_ocpus]:[]
     
 }

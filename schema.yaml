@@ -1,7 +1,7 @@
 # Title shown in Application Information tab.
-title: Sample Marketplace Stack / ORM Application - BYOL
+title: Slef managed LLM Inferencing Marketplace Application - BYOL
 # Sub Title shown in Application Information tab.
-description: This is a Sample Marketplace Stack / ORM Application - BYOL
+description: Allows you to deploy a LLM model on a GPU instance for inferencing purpose - BYOL/Free
 schemaVersion: 1.1.0
 version: "20190304"
 
@@ -205,22 +205,22 @@ variables:
 
   vm_compute_shape:
     type: oci:core:instanceshape:name
-    default: VM.Standard2.2
+    default: BM.GPU.A10.4
     title: Compute Shape
     required: true
     dependsOn:
       compartmentId: compute_compartment_ocid
       #Comment in to restrict to marketplace image allowed shapes 
-      #imageId: mp_listing_resource_id
+      imageId: custom_image_id
 
   vm_flex_shape_ocpus:
     visible: #($vm_compute_shape  == ""VM.Standard.E3.Flex"")
       eq:
         - vm_compute_shape
-        - "VM.Standard.E3.Flex"
+        - "BM.GPU.A10.4"
     type: integer
     default: 2
-    title: Flex Shape OCPUs
+    title: Compute Bare Metal OCPUs
     minimum: 1
     maximum: 64
     required: false

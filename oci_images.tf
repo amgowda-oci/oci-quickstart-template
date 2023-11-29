@@ -9,6 +9,7 @@ variable "marketplace_source_images" {
     is_pricing_associated = bool
     compatible_shapes = list(string)
   }))
+  # opulate this Amar before you publish this MP image
   default = {
     main_mktpl_image = {
       ocid = "ocid1.image.oc1..<unique_id>"
